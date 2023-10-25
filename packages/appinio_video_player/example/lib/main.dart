@@ -49,11 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    _videoPlayerController = VideoPlayerController.network(
-      longVideo,
+    _videoPlayerController = VideoPlayerController.networkUrl(
+      Uri.parse(longVideo),
     )..initialize().then((value) => setState(() {}));
-    _videoPlayerController2 = VideoPlayerController.network(video240);
-    _videoPlayerController3 = VideoPlayerController.network(video480);
+    _videoPlayerController2 = VideoPlayerController.networkUrl(Uri.parse(video240));
+    _videoPlayerController3 = VideoPlayerController.networkUrl(Uri.parse(video480));
     _customVideoPlayerController = CustomVideoPlayerController(
       context: context,
       videoPlayerController: _videoPlayerController,
