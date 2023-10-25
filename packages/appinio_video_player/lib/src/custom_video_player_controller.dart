@@ -233,5 +233,6 @@ class CustomVideoPlayerController {
         }
       }
     }
+    qualityNotifier.dispose();
   }
 }
