@@ -1,9 +1,10 @@
 import 'dart:ui';
+
+import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:appinio_video_player/src/controls/fullscreen_button.dart';
 import 'package:appinio_video_player/src/controls/play_button.dart';
 import 'package:appinio_video_player/src/controls/video_settings_button.dart';
 import 'package:appinio_video_player/src/models/custom_video_player_popup_settings.dart';
-import 'package:appinio_video_player/src/models/custom_video_player_progress_bar_settings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -110,11 +111,12 @@ class CustomVideoPlayerSettings {
   final TextStyle playbackButtonTextStyle;
 
   /// The settings for the progress bar in the middle of the control bar.
-  final CustomVideoPlayerProgressBarSettings
-      customVideoPlayerProgressBarSettings;
+  final CustomVideoPlayerProgressBarSettings customVideoPlayerProgressBarSettings;
 
   /// UI settings for the video settings popup.
   final CustomVideoPlayerPopupSettings customVideoPlayerPopupSettings;
+
+  final ChromeCastButton? castButton;
 
   const CustomVideoPlayerSettings({
     this.customAspectRatio,
@@ -146,8 +148,7 @@ class CustomVideoPlayerSettings {
       fontSize: 14,
       fontFeatures: [FontFeature.tabularFigures()],
     ),
-    this.customVideoPlayerProgressBarSettings =
-        const CustomVideoPlayerProgressBarSettings(),
+    this.customVideoPlayerProgressBarSettings = const CustomVideoPlayerProgressBarSettings(),
     this.showDurationPlayed = true,
     this.showDurationRemaining = true,
     this.controlBarAvailable = true,
@@ -169,7 +170,7 @@ class CustomVideoPlayerSettings {
       fontSize: 14,
       fontFeatures: [FontFeature.tabularFigures()],
     ),
-    this.customVideoPlayerPopupSettings =
-        const CustomVideoPlayerPopupSettings(),
+    this.customVideoPlayerPopupSettings = const CustomVideoPlayerPopupSettings(),
+    this.castButton,
   });
 }

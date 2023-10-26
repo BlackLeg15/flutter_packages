@@ -1,4 +1,5 @@
 import 'package:appinio_video_player/src/controls/all_controls_overlay.dart';
+import 'package:appinio_video_player/src/controls/cast_button.dart';
 import 'package:appinio_video_player/src/custom_video_player_controller.dart';
 import 'package:appinio_video_player/src/seek_buttons.dart';
 import 'package:appinio_video_player/src/thumbnail.dart';
@@ -25,23 +26,18 @@ class _EmbeddedVideoPlayerState extends State<EmbeddedVideoPlayer> {
     super.initState();
 
     if (!widget.isFullscreen) {
-      widget.customVideoPlayerController.updateViewAfterFullscreen =
-          _updateVideoState;
+      widget.customVideoPlayerController.updateViewAfterFullscreen = _updateVideoState;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.customVideoPlayerController.videoPlayerController.value
-        .isInitialized) {
+    if (widget.customVideoPlayerController.videoPlayerController.value.isInitialized) {
       return AspectRatio(
         aspectRatio: widget.isFullscreen
-            ? widget.customVideoPlayerController.videoPlayerController.value
-                .aspectRatio
-            : widget.customVideoPlayerController.customVideoPlayerSettings
-                    .customAspectRatio ??
-                widget.customVideoPlayerController.videoPlayerController.value
-                    .aspectRatio,
+            ? widget.customVideoPlayerController.videoPlayerController.value.aspectRatio
+            : widget.customVideoPlayerController.customVideoPlayerSettings.customAspectRatio ??
+                widget.customVideoPlayerController.videoPlayerController.value.aspectRatio,
         child: Stack(
           children: [
             Container(
@@ -49,8 +45,7 @@ class _EmbeddedVideoPlayerState extends State<EmbeddedVideoPlayer> {
             ),
             Center(
               child: AspectRatio(
-                aspectRatio: widget.customVideoPlayerController
-                    .videoPlayerController.value.aspectRatio,
+                aspectRatio: widget.customVideoPlayerController.videoPlayerController.value.aspectRatio,
                 child: IgnorePointer(
                   child: VideoPlayer(
                     widget.customVideoPlayerController.videoPlayerController,
@@ -65,18 +60,22 @@ class _EmbeddedVideoPlayerState extends State<EmbeddedVideoPlayer> {
               customVideoPlayerController: widget.customVideoPlayerController,
               updateVideoState: _updateVideoState,
             ),
-            if (widget.customVideoPlayerController.customVideoPlayerSettings
-                .showSeekButtons)
+            if (widget.customVideoPlayerController.customVideoPlayerSettings.showSeekButtons)
               SeekButtons(
                 customVideoPlayerController: widget.customVideoPlayerController,
-              )
+              ),
+            if (widget.customVideoPlayerController.customVideoPlayerSettings.castButton != null)
+              Align(
+                alignment: Alignment.topRight,
+                child: CastButton(
+                  customVideoPlayerController: widget.customVideoPlayerController,
+                ),
+              ),
           ],
         ),
       );
     } else {
-      return widget.customVideoPlayerController.customVideoPlayerSettings
-              .placeholderWidget ??
-          const SizedBox.shrink();
+      return widget.customVideoPlayerController.customVideoPlayerSettings.placeholderWidget ?? const SizedBox.shrink();
     }
   }
 

@@ -7,7 +7,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.2.4"
+    version: "1.2.5"
   async:
     dependency: transitive
     description:
@@ -188,6 +188,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  stream_transform:
+    dependency: transitive
+    description:
+      name: stream_transform
+      sha256: "14a00e794c7c11aa145a170587321aedce29769c08d7f58b1d141da75e3b1c6f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:
@@ -220,6 +228,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
+  video_cast:
+    dependency: transitive
+    description:
+      name: video_cast
+      sha256: "24bbac637ae6bd6664a023161b2b0b19f684780e54d2a43269771d20de1a7d9b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   video_player:
     dependency: transitive
     description:
